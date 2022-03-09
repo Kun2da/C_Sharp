@@ -1,0 +1,58 @@
+    #pragma warning disable
+    global using static System.Console;
+
+    namespace LinkedList
+    {
+        public class Node<T>
+        {
+            public T data;
+            public Node<T> next;
+            public Node()
+            {
+                this.data = data;   
+            }
+            public Node(T data)
+            {
+                this.data = data;
+                this.next = null;
+            }
+        }
+        public class LinkedList<T>
+        {
+            private Node<T> head = new Node<T>();
+            private Node<T> tail = new Node<T>();
+            public LinkedList()
+            {
+                this.head.next = tail;
+            }
+            public void InsertFront(T data)
+            {
+                var v = new Node<T>(data);
+                v.next = head.next;
+                head.next = v;
+            }
+            public void Print()
+            {
+                Node<T> v = head.next;
+                Write("[head] -> ");
+                while (v.next != tail)
+                {
+                    Write($"{v.data} -> ");
+                    v = v.next;
+                }
+                Write("[tail]");
+            }
+        }
+        class Program
+        {
+            static void Main()
+            {
+                var L = new LinkedList<string>();
+                L.InsertFront("4");
+                L.InsertFront("3");
+                L.InsertFront("2");
+                L.InsertFront("1");
+                L.Print();
+            }
+        }
+    }
